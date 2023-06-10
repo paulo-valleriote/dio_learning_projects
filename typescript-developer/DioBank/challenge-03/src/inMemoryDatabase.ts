@@ -1,7 +1,9 @@
-interface Account {
+interface PublicAccount {
 	id: number
 	name: string
 	email: string
+}
+interface PrivateAccount extends PublicAccount {
 	password: string
 }
 
@@ -11,7 +13,7 @@ interface NewAccount {
 	password: string
 }
 
-const account: Account[] = [
+const account: PrivateAccount[] = [
 	{
 		id: 1,
 		name: 'John Doe',
@@ -20,7 +22,7 @@ const account: Account[] = [
 	},
 ]
 
-export const getAccountList = (): Account[] => {
+export const getAccountList = (): PublicAccount[] => {
 	if (account.length < 1) {
 		throw new Error('Nenhuma conta foi encontrada')
 	}
@@ -28,10 +30,10 @@ export const getAccountList = (): Account[] => {
 	return account
 }
 
-export const getAccountById = (id: number): Account => {
+export const getAccountById = (id: number): PublicAccount => {
 	const accountIndex = account.findIndex((account) => account.id === id)
 
-	if (!accountIndex) {
+	if (accountIndex < 0) {
 		throw new Error('Nenhuma conta foi encontrada')
 	}
 
@@ -40,7 +42,7 @@ export const getAccountById = (id: number): Account => {
 	return findedAccount
 }
 
-export const getAccountByEmail = (email: string): Account | Error => {
+export const getAccountByEmail = (email: string): PrivateAccount | Error => {
 	const accountIndex = account.findIndex((account) => account.email === email)
 
 	if (accountIndex < 0) {
@@ -52,10 +54,8 @@ export const getAccountByEmail = (email: string): Account | Error => {
 	return findedAccount
 }
 
-export const createAccount = (newAccountProps: NewAccount): number => {
+export const createAccount = (newAccountProps: NewAccount): void => {
 	const accountId = account[Math.abs(account.length - 1)].id + 1 || 1
 
 	account.push({ id: accountId, ...newAccountProps })
-
-	return accountId
 }

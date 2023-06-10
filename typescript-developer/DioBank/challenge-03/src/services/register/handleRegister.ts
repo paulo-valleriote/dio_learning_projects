@@ -1,4 +1,4 @@
-import { createAccount } from '../../inMemoryDatabase'
+import { createAccount, getAccountByEmail } from '../../inMemoryDatabase'
 
 interface IRegisterProps {
 	name: string
@@ -7,5 +7,11 @@ interface IRegisterProps {
 }
 
 export default function handleRegister(newAccount: IRegisterProps) {
-	return createAccount(newAccount)
+	const accountExists = getAccountByEmail(newAccount.email)
+
+	if (accountExists instanceof Error) {
+		return createAccount(newAccount)
+	}
+
+	throw new Error('Este e-mail já está sendo utilizado')
 }

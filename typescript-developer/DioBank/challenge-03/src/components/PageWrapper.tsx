@@ -12,18 +12,27 @@ export default function PageWrapper({ children }: { children: ReactNode }) {
 				overflow: 'hidden',
 			}}
 		>
-			<Header />
-
-			<main
+			<div
 				style={{
 					display: 'flex',
 					flexDirection: 'column',
-					alignItems: 'center',
 					justifyContent: 'center',
+					alignItems: 'center',
 				}}
 			>
-				{children}
-			</main>
+				<Header />
+
+				<main
+					style={{
+						display: 'flex',
+						flexDirection: 'column',
+						alignItems: 'center',
+						justifyContent: 'center',
+					}}
+				>
+					{children}
+				</main>
+			</div>
 		</div>
 	)
 }

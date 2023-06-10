@@ -1,0 +1,48 @@
+.formWrapper {
+	display: flex;
+	flex-direction: column;
+
+	align-items: center;
+	justify-content: center;
+
+	gap: 1.5rem;
+}
+
+.inputWrapper {
+	display: flex;
+	flex-direction: column;
+
+	width: 100%;
+}
+
+.input {
+	padding: 1rem 0.5rem;
+
+	font-size: 1rem;
+
+	background-color: transparent;
+
+	border: 0;
+	border-bottom: 1px solid darkgray;
+}
+
+.input,
+.input:placeholder {
+	color: white;
+}
+
+.button {
+	margin-top: 1rem;
+	width: 100%;
+}
+
+.redirect {
+	color: white;
+	text-decoration: underline;
+
+	transition: color 0.25s;
+}
+
+.redirect:hover {
+	color: darkgray;
+}

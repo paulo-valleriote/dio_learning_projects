@@ -22,12 +22,18 @@ describe('Handle Register', () => {
 		expect(list.length).toBeGreaterThanOrEqual(1)
 	})
 
-	it('Should return an ID', () => {
+	it('Should throw an Error if email already in use', () => {
+		account.email = 'test@email.com'
 		account.password = '1234'
 
-		const id = handleRegister(account)
+		const anotherAccount = {
+			name: 'Doe John',
+			email: 'test@email.com',
+			password: '4321',
+		}
 
-		expect(id).toBeTruthy()
-		expect(id).toBeGreaterThanOrEqual(1)
+		handleRegister(account)
+
+		expect(() => handleRegister(anotherAccount)).toThrow()
 	})
 })
