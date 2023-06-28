@@ -1,17 +1,20 @@
 package features.web;
 
+import java.util.ArrayList;
+
 import features.models.Browser;
 
 public class Safari extends Browser {
   public Safari(String[] args) {
-    openPageTabs = new Webpage[4];
+    openPageTabs = new ArrayList<Webpage>();
     Webpage newPage = new Webpage(args);
+
     currentUrl = newPage.url;
-    openPageTabs[0] = newPage;
+    openPageTabs.add(newPage);
   }
 
   public void showPage() {
-    System.out.println("Página atual: " + openPageTabs[0].displayName);
+    System.out.println("Página atual: " + openPageTabs.get(0).displayName);
   }
 
   @Override
@@ -22,7 +25,17 @@ public class Safari extends Browser {
 
   @Override
   public void newPageTab(String[] args) {
-    openPageTabs[0] = new Webpage(args);
+    openPageTabs.add(new Webpage(args));
+  }
+
+  @Override
+  public void showPagesList() {
+    String openTabsMessage = "Guias abertas: ";
+    for (Webpage tab : openPageTabs) {
+      openTabsMessage += tab.displayName + " / ";
+    }
+
+    System.out.println(openTabsMessage);
   }
 
 }

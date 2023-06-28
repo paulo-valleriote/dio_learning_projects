@@ -24,6 +24,7 @@ public class App {
         secondPageParams[0] = "AnotherWebPage";
         secondPageParams[1] = "www.anotherwebpage.com";
         browser.newPageTab(secondPageParams);
+        browser.showPagesList();
 
         System.out.println("MusicPlayer");
         IphoneMusicPlayer musicPlayer = new IphoneMusicPlayer();
