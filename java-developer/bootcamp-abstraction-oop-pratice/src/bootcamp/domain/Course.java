@@ -1,37 +1,32 @@
 package bootcamp.domain;
 
-public class Course {
-  private String title;
-  private String description;
-  private int duration;
+public class Course extends Content {
+  private int durationInHours;
 
-  public Course(String title, String description, int duration) {
-    this.title = title;
-    this.description = description;
-    this.duration = duration;
+  public Course(String title, String description, int durationInHours) {
+    super(title, description);
+    this.durationInHours = durationInHours;
   }
 
-  public String getTitle() {
-    return title;
+  public int getDurationInHours() {
+    return durationInHours;
   }
 
-  public void setTitle(String title) {
-    this.title = title;
+  public void setDurationInHours(int durationInHours) {
+    this.durationInHours = durationInHours;
   }
 
-  public String getDescription() {
-    return description;
+  @Override
+  public double getXp() {
+    return DEFAULT_XP * durationInHours;
   }
 
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  public int getDuration() {
-    return duration;
-  }
-
-  public void setDuration(int duration) {
-    this.duration = duration;
+  @Override
+  public String toString() {
+    return "Course{" +
+        "title=" + getTitle() + '\'' +
+        ", description=" + getDescription() + '\'' +
+        ", durationInHours=" + durationInHours +
+        '}';
   }
 }
